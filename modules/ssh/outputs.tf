@@ -1,3 +1,3 @@
 output "ssh_key" {
-  value = azurerm_ssh_public_key.ssh_key_pair.public_key
+  value = jsondecode(azapi_resource_action.ssh_public_key_gen.output).publicKey
 }
