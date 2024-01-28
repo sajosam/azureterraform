@@ -13,6 +13,14 @@ steps:
     versionSpec: '3.x'
     addToPath: true
 
+- script: az login --service-principal -u $(servicePrincipalId) -p $(servicePrincipalKey) --tenant $(tenantId)
+  displayName: 'Azure Login'
+  env:
+    ARM_CLIENT_ID: $(servicePrincipalId)
+    ARM_CLIENT_SECRET: $(servicePrincipalKey)
+    ARM_TENANT_ID: $(tenantId)
+    ARM_SUBSCRIPTION_ID: $(subscriptionId)
+
 - script: |
     terraform init
     terraform validate
@@ -21,6 +29,6 @@ steps:
 - script: terraform plan -out main.tfplan 
   displayName: 'Terraform Plan'
 
-- script: terraform apply -input=false tfplan
+- script: terraform apply -input=false main.tfplan
   displayName: 'Terraform Apply'
   condition: succeeded()
