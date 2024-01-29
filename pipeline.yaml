@@ -13,7 +13,7 @@ steps:
     versionSpec: '3.x'
     addToPath: true
 
-- script: az login --service-principal -u $(servicePrincipalId) -p $(servicePrincipalKey) --tenant $(tenantId)
+- script: az login
   displayName: 'Azure Login'
   env:
     ARM_CLIENT_ID: $(servicePrincipalId)
