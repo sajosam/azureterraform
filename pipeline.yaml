@@ -21,12 +21,13 @@ steps:
     ARM_TENANT_ID: $(tenantId)
     ARM_SUBSCRIPTION_ID: $(subscriptionId)
 
-- script: |
-    terraform init
-    terraform validate
-  displayName: 'Terraform Init and Validate'
+- script: terraform init
+  displayName: 'Terraform Init'
 
-- script: terraform plan -out main.tfplan 
+- script: terraform validate
+  displayName: 'Terraform Validate'
+
+- script: terraform plan -out main.tfplan
   displayName: 'Terraform Plan'
 
 - script: terraform apply -input=false main.tfplan
