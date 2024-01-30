@@ -13,6 +13,9 @@ steps:
     versionSpec: '3.x'
     addToPath: true
 
+- script: az login
+  displayName: 'Azure Login'
+
 - script: |
     terraform init
     terraform validate
